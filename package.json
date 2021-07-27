@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/destroyer22719/ClubHub/issues"
   },
-  "homepage": "https://github.com/destroyer22719/ClubHub#readme"
+  "homepage": "https://github.com/destroyer22719/ClubHub#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
