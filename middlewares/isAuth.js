@@ -1,3 +1,5 @@
+const User = require("../model/userSchema")
+
 module.exports = (req, res, next) => {
     let token;
     try {
