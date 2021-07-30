@@ -52,7 +52,23 @@ exports.loginUser = async(req, res, next) => {
         } else {
             res.status(401).send({ message: "Incorrect password" });
         }
-        
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.getCurrentUser = async (req, res, next) => {
+    try {
+        const user = req.user;
+        if (!user) {
+            res.status(404).send({ message: "User not found" });
+        }
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+        });
     } catch (error) {
         next(error);
     }
