@@ -20,6 +20,24 @@ const clubSchema = mongoose.Schema(
             required: true,
             ref: 'User',
         },
+        location: {
+            city: {
+                type: String,
+                required: true
+            },
+            province:  {
+                type: String,
+                required: true
+            },
+            country:  {
+                type: String,
+                required: true
+            },
+            online: {
+                type: Boolean,
+                required: true
+            }
+        }
     },
     {
         timestamps: true,
