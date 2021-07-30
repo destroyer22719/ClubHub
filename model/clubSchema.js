@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-
 const clubSchema = mongoose.Schema(
     {
         name: {
@@ -15,7 +14,7 @@ const clubSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         }],
-        creator:{
+        founder:{
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User',
@@ -44,6 +43,6 @@ const clubSchema = mongoose.Schema(
     }
 );
 
-const User = mongoose.model("User", userSchema);
+const Club = mongoose.model("Club", userSchema);
 
-module.exports = User
+module.exports = Club
