@@ -60,6 +60,21 @@ exports.loginUser = async (req, res, next) => {
     }
 };
 
+exports.getUserById = async (req, res, next) => {
+    try {
+        let user = await User.findById(req.params.id).select("-password");
+        const clubs = await Club.find({ members: req.params.id}).populate("members").select("-password")
+
+        if (user) {
+            res.send({...user._doc, clubs});
+        } else {
+            res.send({message: "User not found"}).status(404);
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
 exports.getCurrentUser = async (req, res, next) => {
     try {
         const user = req.user;
@@ -69,6 +84,46 @@ exports.getCurrentUser = async (req, res, next) => {
         const clubs = await Club.find({ members: req.user._id}).populate("members")
 
         res.send({...user._doc, clubs});
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.deleteUser = async(req, res, next) => {
+    try {
+        let user = await User.findById(req.user._id);
+        if (user) {
+            await user.remove();
+            return res.send({ message: "User removed"});
+        } else {
+            return res.send({ message: "User not found"}).status(404);
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.updateUser = async (req, res, next) => {
+    try {
+        let user = await User.findById(req.user._id);
+
+        if (!user) {
+            res.send({message: "User not found"}).status(404);
+        }
+
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.bio = req.body.bio || user.bio;
+        user.password = await bcrypt.hashSync(req.body.password, 10) || user.password
+
+        const updatedUser = await user.save();
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            bio: updatedUser.bio
+        });
     } catch (error) {
         next(error);
     }
