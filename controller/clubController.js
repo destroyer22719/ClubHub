@@ -21,9 +21,9 @@ exports.createClub = async (req, res, next) => {
 
 exports.getClubById = async (req, res, next) => {
     try {
-        const club = await Club.findById(req.params.id);
+        const club = await Club.findById(req.params.id).populate("members");
         if (!club) {
-            res.status(404).send({ message: "Club not found" });
+            return res.status(404).send({ message: "Club not found" });
         }
 
         res.send(club);
@@ -34,10 +34,25 @@ exports.getClubById = async (req, res, next) => {
 
 exports.getAllClubs = async (req, res, next) => {
     try {
-        const clubs = await Club.find();
-
+        const club = await Club.findById(req.params.id).populate("members");
+        if (!club) {
+            return res.status(404).send({ message: "Club not found" });
+        }
         res.send(clubs);
     } catch (error) {
         next(error);
     }
 };
+
+exports.joinClub = async (req, res, next) => {
+    try {
+        const club = await Club.findById(req.params.id);
+
+        club.members.push(req.user._id)
+        await club.save()
+        res.send({message: "Successfully joined club"})
+    } catch (error) {
+        next(error);
+    }
+};
+
