@@ -18,6 +18,6 @@ module.exports = async (req, res, next) => {
             res.status(401).send({ message: "No JWT" });
         }
     } catch (error) {
-        next(error);
+        res.send(error).status(401)
     }
 };
