@@ -1,4 +1,5 @@
 const User = require("../model/userSchema");
+const Club = require("../model/clubSchema");
 const bcrypt = require("bcrypt");
 const generateToken = require("../utils/generateToken");
 
@@ -65,11 +66,9 @@ exports.getCurrentUser = async (req, res, next) => {
         if (!user) {
             res.status(404).send({ message: "User not found" });
         }
-        res.json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-        });
+        const clubs = await Club.find({ members: req.user._id}).populate("members")
+
+        res.send({...user._doc, clubs});
     } catch (error) {
         next(error);
     }

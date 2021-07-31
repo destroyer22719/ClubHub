@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
         ) {
             token = req.headers.authorization.split(" ")[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decoded._id).select("-password");
+            req.user = await User.findById(decoded._id).select("-password -__v");
             next();
         }
 
