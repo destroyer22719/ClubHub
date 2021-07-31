@@ -1,0 +1,7 @@
+language = "nodejs"
+run = "npm start"
+const mySecret = process.env['MONGODB_URL']
+
+const mySecret = process.env['MONGODB_URL']
+
+const mySecret = process.env['JWT_SECRET']
