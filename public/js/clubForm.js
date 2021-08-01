@@ -51,5 +51,5 @@ form.on("submit", async (e) => {
 
     const resJSON = await res.json();
     console.log(resJSON)
-    // location.href = `club.html?id=${resJSON._id}`;
+    location.href = `club.html?id=${resJSON._id}`;
 });

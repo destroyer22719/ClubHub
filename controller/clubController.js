@@ -26,7 +26,17 @@ exports.createClub = async (req, res, next) => {
 
 exports.getClubById = async (req, res, next) => {
     try {
-        const club = await Club.findById(req.params.id).populate("members");
+        const club = await Club.findById(req.params.id)
+            .populate([{
+                    path: "founder",
+                    select: "-password -v"
+                }, 
+                {
+                    path: "members",
+                    select: "-password -v"
+                }])
+
+
         if (!club) {
             return res.status(404).send({ message: "Club not found" });
         }

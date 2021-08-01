@@ -14,10 +14,10 @@ const clubSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         }],
-        founder:{
+        founder: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
-            ref: 'User',
+            ref: "User",
         },
         location: {
             city: {
