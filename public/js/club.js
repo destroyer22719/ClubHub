@@ -26,8 +26,8 @@
 
     const clubRes = await fetch(`/api/clubs/${clubId}`);
     const club = await clubRes.json();
-    console.log(club);
 
+    $("title").text("ClubHub | " + club.name);
     name.text(club.name);
     desc.text(club.desc);
     city.text(club.location.city);
@@ -38,6 +38,10 @@
     for (member of club.members) {
         console.log(member);
         members.append(`<li><a target="_blank" href="/user.html?id=${member._id}">${member.username}</a></li>`)
+    }
+
+    if (club.members.some(obj => obj._id === currentUser._id) || club.founder._id === currentUser._id) {
+        joinButton.prop("disabled", true);
     }
 
     joinButton.click(async () => {

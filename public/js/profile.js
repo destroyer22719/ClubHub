@@ -21,7 +21,10 @@ const fetchUser = async () => {
     if (resJSON.clubs.length === 0) {
         clubs.text("You haven't joined any clubs");
     } else {
-        
+        for (club of resJSON.clubs) {
+            console.log(club)
+            clubs.append(`<li><a target="_blank" href="/club.html?id=${club._id}">${club.name}</a></li>`)
+        }
     }
 }    
 

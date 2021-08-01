@@ -66,9 +66,9 @@ exports.getUserById = async (req, res, next) => {
         const clubs = await Club.find({ members: req.params.id}).populate("members").select("-password")
 
         if (user) {
-            res.send({...user._doc, clubs});
+            return res.send({...user._doc, clubs});
         } else {
-            res.send({message: "User not found"}).status(404);
+            return res.status(404).send({message: "User not found"});
         }
     } catch (error) {
         next(error);
@@ -96,7 +96,7 @@ exports.deleteUser = async(req, res, next) => {
             await user.remove();
             return res.send({ message: "User removed"});
         } else {
-            return res.send({ message: "User not found"}).status(404);
+            return res.status(404).send({ message: "User not found"});
         }
     } catch (error) {
         next(error);
@@ -108,7 +108,7 @@ exports.updateUser = async (req, res, next) => {
         let user = await User.findById(req.user._id);
 
         if (!user) {
-            res.send({message: "User not found"}).status(404);
+            res.status(404).send({message: "User not found"});
         }
 
         user.name = req.body.name || user.name;
