@@ -5,15 +5,15 @@ const generateToken = require("../utils/generateToken");
 
 exports.createUser = async (req, res, next) => {
     try {
-        const { name, email, password, bio } = req.body;
+        const { username, email, password, bio } = req.body;
         const userDupe = await User.findOne({ email });
 
         if (userDupe) {
-            res.status(409).send({ message: "Email is already taken" });
+            return res.status(409).send({ message: "Email is already taken" });
         }
 
         const user = new User();
-        (user.name = name),
+        (user.username = username),
             (user.email = email),
             (user.password = await bcrypt.hashSync(password, 10));
         user.bio = bio;
@@ -23,13 +23,13 @@ exports.createUser = async (req, res, next) => {
         if (user) {
             res.status(201).json({
                 _id: user._id,
-                name: user.name,
+                username: user.username,
                 email: user.email,
                 token: generateToken(user._id),
                 bio: user.bio,
             });
         } else {
-            res.status(406).send({ message: "Invalid Input" });
+            return res.status(406).send({ message: "Invalid Input" });
         }
     } catch (err) {
         next(err);
@@ -42,7 +42,7 @@ exports.loginUser = async (req, res, next) => {
         const user = await User.findOne({ email });
 
         if (!user) {
-            res.status(404).send({ message: "User not found" });
+            return res.status(404).send({ message: "Incorrect email" });
         }
 
         if (user && (await bcrypt.compareSync(password, user.password))) {
@@ -53,7 +53,7 @@ exports.loginUser = async (req, res, next) => {
                 token: generateToken(user._id),
             });
         } else {
-            res.status(401).send({ message: "Incorrect password" });
+            return res.status(401).send({ message: "Incorrect password" });
         }
     } catch (error) {
         next(error);

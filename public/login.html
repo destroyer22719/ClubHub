@@ -1,8 +1,8 @@
 <html lang="en">
 <head>
   <title>Club Hub Login</title>
+  <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 </head>
-
 <body>
   <header>
     <a href="index.html">Go back to home page</a>
@@ -12,18 +12,21 @@
     
     <!-- Where the input will go-->
     <form>
-      Username
+      <label for="email">email</label>
       <br>
-      <input type ="string" name="name" >
-      <br><br>
-      Password
+      <input id="email" type="email" required>
       <br>
-      <input type ="string" name="password" >
+      <label for="password">Password</label>
+      <br>
+      <input id="password" type="password" required >
+      <br>
+      <button>Login</button>
     </form>
   </main>
-  <footer>
-    Don't have an account yet? 
+  <div>
+    Don't have an account?
     <a  href="register.html">Join Here</a>
-  </footer>
+  </div>
+  <script src="js/login.js"></script>
 </body>
 </html>
