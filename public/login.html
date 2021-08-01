@@ -1,32 +1,75 @@
 <html lang="en">
 <head>
   <title>Club Hub Login</title>
+  <link herf="style.css">
   <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+  <style>
+.myDiv { 
+  text-align: center;
+}
+header{
+  background-color: black;
+
+  
+}
+body {
+  background-color: 333333;
+  color: white;
+  font-family: 'Syncopate', sans-serif;
+  margin:0;
+}
+h1{
+  color: 00C2CB;
+}
+input {
+  background-color: #989898;
+  border: none;
+  width: 200;
+  height: 30;
+}
+.button1 {
+  background-color: #FF914D; 
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+  </style>
 </head>
 <body>
   <header>
-    <a href="index.html">Go back to home page</a>
+    <a href="index.html">
+    <img src="public/images/ClubHub_Logo (1).png" alt="index.htlm" height="50" width="50">
+    </a>
   </header> 
   <main>
+  <div class="myDiv">
+    <br><br>
     <h1>Login to your Club Hub account</h1>
+    <br><br>
     
     <!-- Where the input will go-->
     <form>
-      <label for="email">email</label>
-      <br>
+      <h4><label for="email">Email</label></h4>
       <input id="email" type="email" required>
       <br>
-      <label for="password">Password</label>
-      <br>
+      <h4><label for="password">Password</label></h4>
       <input id="password" type="password" required >
-      <br>
-      <button>Login</button>
+      <br><br>
+      <button class="button button1">Login</button>
     </form>
-  </main>
-  <div>
+    <br>
     Don't have an account?
     <a  href="register.html">Join Here</a>
+  
   </div>
+  </main>
   <script src="js/login.js"></script>
 </body>
 </html>
