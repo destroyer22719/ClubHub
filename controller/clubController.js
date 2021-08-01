@@ -7,7 +7,12 @@ exports.createClub = async (req, res, next) => {
         const newClub = new Club();
 
         newClub.name = name;
-        newClub.location = location;
+        newClub.location = {
+            city: location.city[0].toUpperCase() + location.city.slice(1),
+            province: location.province[0].toUpperCase() + location.province.slice(1),
+            country: location.country[0].toUpperCase() + location.country.slice(1),
+            online: location.online,
+        };
         newClub.desc = desc;
         newClub.founder = req.user._id;
 
