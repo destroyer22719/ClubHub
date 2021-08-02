@@ -3,15 +3,22 @@
     const clubList = $("#clubs");
     const searchForm = $("form");
     const searchValue = $("input");
-
+    const clubResultsCount = $("#count");
+    // console.log(clubResultsCount.);
 
     const clubsRes = await fetch("/api/clubs");
-    const clubsJSON = await clubsRes.json();
+    const clubsResJSON = await clubsRes.json();
+    const clubsJSON = clubsResJSON.clubs;
+    const clubsCount = clubsResJSON.count;
 
-    const displayClubs = (clubs) => {
-        if (clubs.length === 0) {
-            clubList.html("<h2>No Clubs Found</h2>")
+    const displayClubs = (clubs, count) => {
+
+        if (count === 0) {
+            return clubList.html("<h2>No Clubs Found</h2>")
         }
+        
+        console.log(count);
+        clubResultsCount.text(`${count} ${count > 1 ? "Results": "Result"}`);
 
         for (club of clubs) {
             clubList.html("");
@@ -24,7 +31,7 @@
                         <p>Members: ${club.members.length}</p>
                     </div>
                 </a>
-            `)
+            `);
         }
     }
 
@@ -32,10 +39,12 @@
         e.preventDefault();
         const searchRes = await fetch(`/api/clubs?search=${searchValue.val()}`);
         const searchResult = await searchRes.json();
-        displayClubs(searchResult)
+        const clubResult = searchResult.clubs;
+        const clubCount = searchResult.count;
+        displayClubs(clubResultsCount, clubCount)
     })
 
-    displayClubs(clubsJSON);
+    displayClubs(clubsJSON, clubsCount);
 
 })();
 
