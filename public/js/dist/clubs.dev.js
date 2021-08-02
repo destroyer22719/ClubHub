@@ -1,30 +1,36 @@
 "use strict";
 
 (function _callee2() {
-  var clubList, clubsRes, searchForm, searchValue, clubsJSON, displayClubs;
+  var clubList, searchForm, searchValue, clubResultsCount, clubsRes, clubsResJSON, clubsJSON, clubsCount, displayClubs;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           clubList = $("#clubs");
-          _context2.next = 3;
-          return regeneratorRuntime.awrap(fetch("/api/clubs"));
-
-        case 3:
-          clubsRes = _context2.sent;
           searchForm = $("form");
           searchValue = $("input");
-          _context2.next = 8;
+          clubResultsCount = $("#count"); // console.log(clubResultsCount.);
+
+          _context2.next = 6;
+          return regeneratorRuntime.awrap(fetch("/api/clubs"));
+
+        case 6:
+          clubsRes = _context2.sent;
+          _context2.next = 9;
           return regeneratorRuntime.awrap(clubsRes.json());
 
-        case 8:
-          clubsJSON = _context2.sent;
+        case 9:
+          clubsResJSON = _context2.sent;
+          clubsJSON = clubsResJSON.clubs;
+          clubsCount = clubsResJSON.count;
 
-          displayClubs = function displayClubs(clubs) {
-            if (clubs.length === 0) {
-              clubList.html("<h2>No Clubs Found</h2>");
+          displayClubs = function displayClubs(clubs, count) {
+            if (count === 0) {
+              return clubList.html("<h2>No Clubs Found</h2>");
             }
 
+            console.log(count);
+            clubResultsCount.text("".concat(count, " ").concat(count > 1 ? "Results" : "Result"));
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -52,7 +58,7 @@
           };
 
           searchForm.on("submit", function _callee(e) {
-            var searchRes, searchResult;
+            var searchRes, searchResult, clubResult, clubCount;
             return regeneratorRuntime.async(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
@@ -68,18 +74,20 @@
 
                   case 6:
                     searchResult = _context.sent;
-                    displayClubs(searchResult);
+                    clubResult = searchResult.clubs;
+                    clubCount = searchResult.count;
+                    displayClubs(clubResultsCount, clubCount);
 
-                  case 8:
+                  case 10:
                   case "end":
                     return _context.stop();
                 }
               }
             });
           });
-          displayClubs(clubsJSON);
+          displayClubs(clubsJSON, clubsCount);
 
-        case 12:
+        case 15:
         case "end":
           return _context2.stop();
       }
