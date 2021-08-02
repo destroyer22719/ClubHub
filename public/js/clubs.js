@@ -28,9 +28,8 @@
             return clubList.html("<h2>No Clubs Found</h2>")
         }
         
-        const totalPages = Math.ceil(count / 1);
-        console.log(page)
-        console.log(page === 1, page === totalPages);
+        const totalPages = Math.ceil(count / 5);
+        console.log(count);
         clubResultsCount.text(`${count} ${count > 1 ? "Results": "Result"}`);
         if (page === 1) {
             clubPageNav.html(`
@@ -54,8 +53,9 @@
             `)
         }
 
+        clubList.html("");
         for (club of clubs) {
-            clubList.html("");
+            console.log(club);
             clubList.append(`
                 <a target="_blank" href="club.html?id=${club._id}">
                     <div class="club-list__item">
