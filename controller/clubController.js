@@ -23,12 +23,12 @@ exports.createClub = async (req, res, next) => {
         }
 
         newClub.discord = discord;
-
         newClub.save();
 
         if (newClub) {
             res.send(newClub);
         }
+        
     } catch (error) {}
 };
 
