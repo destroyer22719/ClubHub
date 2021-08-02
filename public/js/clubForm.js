@@ -30,7 +30,6 @@ form.on("submit", async (e) => {
     e.preventDefault();
     await fetchUser();
     const token = localStorage.getItem("token");
-    console.log(online.is(":checked"));
     const res = await fetch("/api/clubs/create", {
         method: "POST",
         headers: {
