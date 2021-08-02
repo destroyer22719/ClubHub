@@ -39,9 +39,9 @@ textarea {
  border-radius: 8px;
 }
 .button2 {
- background-color: rgb(180,180,180);
+ background-color: #FF914D;
  border: none;
- color: black;
+ color: whitesmoke;
  padding: 10px 30px;
  text-align: center;
  display: inline-block;
