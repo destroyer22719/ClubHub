@@ -23,13 +23,11 @@
     const clubsCount = clubsResJSON.count;
 
     const displayClubs = (clubs, count) => {
-        console.log(clubs);
         if (count === 0) {
             return clubList.html("<h2>No Clubs Found</h2>")
         }
         
         const totalPages = Math.ceil(count / 5);
-        console.log(count);
         clubResultsCount.text(`${count} ${count > 1 ? "Results": "Result"}`);
         if (page === 1) {
             clubPageNav.html(`
@@ -55,7 +53,6 @@
 
         clubList.html("");
         for (club of clubs) {
-            console.log(club);
             clubList.append(`
                 <a target="_blank" href="club.html?id=${club._id}">
                     <div class="club-list__item">
@@ -74,11 +71,6 @@
     searchForm.on("submit", async (e) => {
         e.preventDefault();
         location.href = `/clubs.html?search=${searchValue.val()}&page=${page}`
-        // const searchRes = await fetch(`/api/clubs?search=${searchValue.val()}`);
-        // const searchResult = await searchRes.json();
-        // const clubResult = searchResult.clubs;
-        // const clubCount = searchResult.count;
-        // displayClubs(clubResultsCount, clubCount)
     })
 
     displayClubs(clubsJSON, clubsCount);
