@@ -58,7 +58,7 @@
             clubList.html("");
             clubList.append(`
                 <a target="_blank" href="club.html?id=${club._id}">
-                    <div>
+                    <div class="club-list__item">
                         <p>${club.name}</p>
                         <p>${club.location.city}, ${club.location.province}, ${club.location.country}<p>
                         <p>${club.desc}</p>
