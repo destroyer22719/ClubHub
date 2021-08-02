@@ -7,6 +7,7 @@
     const joinButton = $("#join");
     const members = $("#members");
     const creator = $("#creator");
+    const discord = $("#discord");
 
     const urlParams = new URLSearchParams(window.location.search);
     const clubId = urlParams.get("id");
@@ -42,6 +43,8 @@
 
     if (club.members.some(obj => obj._id === currentUser._id) || club.founder._id === currentUser._id) {
         joinButton.prop("disabled", true);
+        discord.prop("href", club.discord);
+        discord.text("Join Discord");
     }
 
     joinButton.click(async () => {

@@ -1,10 +1,11 @@
 (async () => {
    
     const clubList = $("#clubs");
-    const clubsRes = await fetch("/api/clubs");
     const searchForm = $("form");
-    const searchValue = $("input")
+    const searchValue = $("input");
 
+
+    const clubsRes = await fetch("/api/clubs");
     const clubsJSON = await clubsRes.json();
 
     const displayClubs = (clubs) => {
