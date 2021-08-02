@@ -2,5 +2,7 @@
     border: 5px solid white;
     background-color: white;
     width: 500px;
-    height: 200px;
+    padding: 25px;
+    margin: 10px;
+    border-radius: 5px;
 }
