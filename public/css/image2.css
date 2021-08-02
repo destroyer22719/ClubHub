@@ -1,0 +1,71 @@
+.myDiv {
+    text-align: center;
+   }
+   header{
+    background-color: #333333;
+    
+   }
+
+   nav{
+   background-color: black;
+   }
+   body {
+    background-color: #333333;
+    color: white;
+    font-family: 'Syncopate', sans-serif;
+    margin:0;
+   }
+   footer{
+     position: fixed;
+     padding: 10px 10px 0px 20px;
+     bottom: 0;
+     width: 100%;
+  
+   }
+   h1{
+    color: #00C2CB;
+   }
+   h2{
+    color: #00C2CB;
+    size:20px;
+   }
+   input {
+    background-color: #989898;
+    border: none;
+    width: 250;
+    height: 30;
+   }
+   textarea {
+     background-color: #989898;
+     border: none;
+     width: 250;
+     height: 100;
+   }
+   .button1 {
+    background-color: #FF914D;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+   }
+   .button2 {
+    background-color: #FF914D;
+    border: none;
+    color: whitesmoke;
+    padding: 10px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 8px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+   }
+   a{
+    color: #333; ;
+   }
+   
