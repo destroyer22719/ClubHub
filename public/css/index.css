@@ -139,3 +139,15 @@ p {
 
 
 }
+.button2 {
+ background-color: #FF914D;
+ border: none;
+ color: whitesmoke;
+ padding: 10px 30px;
+ text-align: center;
+ display: inline-block;
+ font-size: 20px;
+ margin: 8px 2px;
+ cursor: pointer;
+ border-radius: 8px;
+}
