@@ -17,7 +17,7 @@
             clubList.append(`
                 <a target="_blank" href="club.html?id=${club._id}">
                     <div>
-                        <h3>${club.name}</h3>
+                        <p>${club.name}</p>
                         <p>${club.location.city}, ${club.location.province}, ${club.location.country}<p>
                         <p>${club.desc}</p>
                         <p>Members: ${club.members.length}</p>
