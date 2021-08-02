@@ -75,13 +75,13 @@ exports.getAllClubs = async (req, res, next) => {
                 },
             })
                 .populate("members", "-password")
-                .skip(pageSize * page - 1)
+                .skip(pageSize * (page - 1))
                 .limit(pageSize);
         } else {
             count = await Club.countDocuments();
             clubs = await Club.find()
                 .populate("members", "-password")
-                .skip(pageSize * page - 1)
+                .skip(pageSize * (page - 1))
                 .limit(pageSize);
         }
 

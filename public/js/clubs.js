@@ -23,7 +23,7 @@
     const clubsCount = clubsResJSON.count;
 
     const displayClubs = (clubs, count) => {
-
+        console.log(clubs);
         if (count === 0) {
             return clubList.html("<h2>No Clubs Found</h2>")
         }
