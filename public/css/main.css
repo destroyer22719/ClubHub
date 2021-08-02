@@ -31,6 +31,9 @@
     color: #00C2CB;
     size:20px;
    }
+   h4{
+     color:rgb(100, 100, 100);
+   }
    input {
     background-color: #989898;
     border: none;
@@ -72,5 +75,9 @@
    }
    .bioLayout{
      position: relative;
-     left:40px;
+     left:35px;
+   }
+   .headerLayout{
+     position: relative;
+     left:10px;
    }
