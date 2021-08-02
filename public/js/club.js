@@ -40,7 +40,7 @@
     if (club.location.online) {
         online.html('<i class="fa fa-check"></i>');
     } else {
-        online.html('<i class="fa fa-times"></i>')
+        online.html('<i class="fa fa-times"></i>');
     }
 
     for (member of club.members) {
