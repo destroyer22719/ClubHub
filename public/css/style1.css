@@ -17,8 +17,14 @@ h1{
 input {
  background-color: #989898;
  border: none;
- width: 200;
+ width: 250;
  height: 30;
+}
+textarea {
+  background-color: #989898;
+  border: none;
+  width: 250;
+  height: 100;
 }
 .button1 {
  background-color: #FF914D;

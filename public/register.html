@@ -2,40 +2,49 @@
 <head>
   <title>Club Hub | Register</title>
   <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="css/style1.css" />
 </head>
 
 <body>
   <header>
-    <a href="index.html">Go back to home page</a>
+       <a href="index.html">
+    <img src="public/images/ClubHub_Logo (1).png" alt="index.htlm" height="50" width="50">
+    </a>
   </header> 
   <main>
-    <h1>Login to your Club Hub account</h1>
+    <div class="myDiv">
+      <br>
+      <h1>Sign Up to Club Hub</h1>
+      
     
-    <!-- Where the input will go-->
-    <form>
-      <label for="username">Username</label>
-      <br>
-      <input id="username" required>
-      <br>
-      <label for="email">Email</label>
-      <br>
-      <input id="email" type="email" required>
-      <br>
-      <label for="password">Password</label>
-      <br>
-      <input id="password" type="password" required>
-      <br>
-      <label for="bio">Bio</label>
-      <br>
-      <textarea id="bio"></textarea>
-      <br>
-      <button>Register</button>
-    </form>
-  </main>
-  <div>
+      <!-- Where the input will go-->
+      <form>
+      <h4><label for="username">Username</label></h4>
+    
+       <input id="username" required>
+  
+      <h4> <label for="email">Email</label></h4>
+      
+       <input id="email" type="email" required>
+        
+       <h4> <label for="password">Password</label></h4>
+       
+       <input id="password" type="password" required>
+        
+      <h4> <label for="bio">Bio</label></h4>
+       
+        <textarea id="bio"></textarea>
+        <br>
+        <br>
+        <button class="button button1">Register</button>
+        
+      </form>
+    
+      <br>    
     Already have an account?
-    <a  href="login.html">Join Here</a>
+    <a  href="login.html">Login Here</a>
   </div>
+  </main>
   <script src="js/register.js"></script>
 </body>
 </html>
