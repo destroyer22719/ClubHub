@@ -8,6 +8,7 @@
     const members = $("#members");
     const creator = $("#creator");
     const discord = $("#discord");
+    const online = $("#online");
 
     const urlParams = new URLSearchParams(window.location.search);
     const clubId = urlParams.get("id");
@@ -36,8 +37,13 @@
     country.text(club.location.country);
     creator.text(club.founder.username);
 
+    if (club.location.online) {
+        online.html('<i class="fa fa-check"></i>');
+    } else {
+        online.html('<i class="fa fa-times"></i>');
+    }
+
     for (member of club.members) {
-        console.log(member);
         members.append(`<li><a target="_blank" href="/user.html?id=${member._id}">${member.username}</a></li>`)
     }
 
@@ -58,5 +64,6 @@
         const joinResJSON = await joinRes.json();
         alert(joinResJSON.message);
         location.reload()
-    })
+    });
+
 })();

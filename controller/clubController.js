@@ -56,21 +56,38 @@ exports.getClubById = async (req, res, next) => {
 exports.getAllClubs = async (req, res, next) => {
     try {
         let clubs;
-        console.log(req.query.search);
+        let count;
+        const page = req.query.page || 1;
+        const pageSize = 1;
+
         if (req.query.search) {
+            count = await Club.countDocuments({
+                $text: {
+                    $search: req.query.search
+                }
+            })
+
             clubs = await Club.find({
                 $text: {
                     $search: req.query.search
                 }
-            }).populate("members", "-password");
+            })
+                .populate("members", "-password")
+                .skip(pageSize * page - 1)
+                .limit(pageSize);
+
         } else {
-            clubs = await Club.find().populate("members", "-password");
+            count = await Club.countDocuments();
+            clubs = await Club.find()
+                .populate("members", "-password")
+                .skip(pageSize * page - 1)
+                .limit(pageSize);
         }
 
         if (!clubs) {
             return res.status(404).send({ message: "Club not found" });
         }
-        res.send(clubs);
+        res.send({count, clubs});
     } catch (error) {
         next(error);
     }
