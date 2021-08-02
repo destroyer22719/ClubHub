@@ -13,7 +13,6 @@ const fetchUser = async () => {
     });
 
     const resJSON = await res.json();
-    console.log(resJSON);
 
     username.text(resJSON.username);
     bio.text(resJSON.bio)
@@ -22,7 +21,6 @@ const fetchUser = async () => {
         clubs.text("You haven't joined any clubs");
     } else {
         for (club of resJSON.clubs) {
-            console.log(club)
             clubs.append(`<li><a target="_blank" href="/club.html?id=${club._id}">${club.name}</a></li>`)
         }
     }

@@ -44,7 +44,6 @@
     }
 
     for (member of club.members) {
-        console.log(member);
         members.append(`<li><a target="_blank" href="/user.html?id=${member._id}">${member.username}</a></li>`)
     }
 

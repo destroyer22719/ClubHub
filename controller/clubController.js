@@ -56,7 +56,6 @@ exports.getClubById = async (req, res, next) => {
 exports.getAllClubs = async (req, res, next) => {
     try {
         let clubs;
-        console.log(req.query.search);
         if (req.query.search) {
             clubs = await Club.find({
                 $text: {

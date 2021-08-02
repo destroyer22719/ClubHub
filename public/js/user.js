@@ -13,8 +13,6 @@
     }
     const user = await res.json();
 
-    console.log(user);
-
     if (!user) {
         $("title").text("Clubhub | User 404")
         return $("body").html("<h1>User Not Found</h1>");
@@ -28,7 +26,6 @@
         clubs.text(`${user.name} haven't joined any clubs yet`);
     } else {
         for (club of user.clubs) {
-            console.log(club);
             clubs.append(
                 `<li><a target="_blank" href="/club.html?id=${club._id}">${club.name}</a></li>`
             );
