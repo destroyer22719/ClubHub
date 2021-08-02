@@ -70,4 +70,7 @@
    a{
     color: #333; ;
    }
-   
+   .bioLayout{
+     position: relative;
+     left:40px;
+   }
