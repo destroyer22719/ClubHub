@@ -21,6 +21,10 @@ const ClubSchema = mongoose.Schema(
             required: true,
             ref: "User",
         },
+        discord: {
+            type: String,
+            required: true,
+        },
         location: {
             city: {
                 type: String,
@@ -45,7 +49,7 @@ const ClubSchema = mongoose.Schema(
     }
 );
 
-ClubSchema.index({"$**": "text"} );
+ClubSchema.index({"name": "text", "desc": "text"} );
 const Club = mongoose.model("Club", ClubSchema);
 
 module.exports = Club;
