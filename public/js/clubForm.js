@@ -5,6 +5,7 @@ const city = $("#city");
 const province = $("#province");
 const country = $("#country");
 const online = $("#online");
+const discord = $("#discord");
 
 const fetchUser = async () => {
     const token = localStorage.getItem("token");
@@ -46,10 +47,15 @@ form.on("submit", async (e) => {
                 country: country.val(),
                 online: online.is(":checked"),
             },
+            discord: discord.val()
         }),
     });
 
     const resJSON = await res.json();
-    console.log(resJSON)
-    location.href = `club.html?id=${resJSON._id}`;
+
+    if (resJSON.message) {
+        alert(resJSON.message);
+    } else {
+        location.href = `club.html?id=${resJSON._id}`;
+    }
 });

@@ -2,7 +2,7 @@ const Club = require("../model/clubSchema");
 
 exports.createClub = async (req, res, next) => {
     try {
-        const { name, location, desc } = req.body;
+        const { name, location, desc, discord } = req.body;
 
         const newClub = new Club();
 
@@ -15,6 +15,12 @@ exports.createClub = async (req, res, next) => {
         };
         newClub.desc = desc;
         newClub.founder = req.user._id;
+
+        if (!discord.match(/^https:\/\/discord.gg\/[a-zA-Z0-9]{8}$/)) {
+            return res.send({message: "Invalid Discord invite"}).status(400);
+        }
+
+        newClub.discord = discord;
 
         newClub.save();
 
