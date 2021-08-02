@@ -63,7 +63,7 @@ exports.loginUser = async (req, res, next) => {
 exports.getUserById = async (req, res, next) => {
     try {
         let user = await User.findById(req.params.id).select("-password");
-        const clubs = await Club.find({ members: req.params.id}).populate("members").select("-password")
+        const clubs = await Club.find({ members: req.params.id}).populate("members", "-password").select("-password")
 
         if (user) {
             return res.send({...user._doc, clubs});
@@ -81,7 +81,7 @@ exports.getCurrentUser = async (req, res, next) => {
         if (!user) {
             res.status(404).send({ message: "User not found" });
         }
-        const clubs = await Club.find({ members: req.user._id}).populate("members")
+        const clubs = await Club.find({ members: req.user._id}).populate("members", "-password")
 
         res.send({...user._doc, clubs});
     } catch (error) {

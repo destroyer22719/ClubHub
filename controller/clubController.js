@@ -49,7 +49,18 @@ exports.getClubById = async (req, res, next) => {
 
 exports.getAllClubs = async (req, res, next) => {
     try {
-        const clubs = await Club.find().populate("members");
+        let clubs;
+        console.log(req.query.search);
+        if (req.query.search) {
+            clubs = await Club.find({
+                $text: {
+                    $search: req.query.search
+                }
+            }).populate("members", "-password");
+        } else {
+            clubs = await Club.find().populate("members", "-password");
+        }
+
         if (!clubs) {
             return res.status(404).send({ message: "Club not found" });
         }

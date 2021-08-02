@@ -1,6 +1,6 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const clubSchema = mongoose.Schema(
+const ClubSchema = mongoose.Schema(
     {
         name: {
             type: String,
@@ -8,12 +8,14 @@ const clubSchema = mongoose.Schema(
         },
         desc: {
             type: String,
-            required: true
+            required: true,
         },
-        members: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }],
+        members: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+            },
+        ],
         founder: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
@@ -22,27 +24,28 @@ const clubSchema = mongoose.Schema(
         location: {
             city: {
                 type: String,
-                required: true
+                required: true,
             },
-            province:  {
+            province: {
                 type: String,
-                required: true
+                required: true,
             },
-            country:  {
+            country: {
                 type: String,
-                required: true
+                required: true,
             },
             online: {
                 type: Boolean,
-                required: true
-            }
-        }
+                required: true,
+            },
+        },
     },
     {
         timestamps: true,
     }
 );
 
-const Club = mongoose.model("Club", clubSchema);
+ClubSchema.index({"$**": "text"} );
+const Club = mongoose.model("Club", ClubSchema);
 
-module.exports = Club
+module.exports = Club;
