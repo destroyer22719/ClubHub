@@ -8,10 +8,12 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const page = +urlParams.get("page") || 1;
-    const search = urlParams.get("search");
+    let search = urlParams.get("search");
 
     let clubsRes;
     if (search) {
+        search = urlParams.get("search").replace("%20", " ");     
+        console.log(search)   
         clubsRes = await fetch(`/api/clubs?search=${search}&page=${page}`);
 
     } else {
