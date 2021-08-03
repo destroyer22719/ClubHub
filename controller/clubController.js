@@ -18,7 +18,7 @@ exports.createClub = async (req, res, next) => {
         newClub.desc = desc;
         newClub.founder = req.user._id;
 
-        if (!discord.match(/^(https:\/\/discord.gg\/[a-zA-Z0-9]{8,10})$/)) {
+        if (!discord.match(/^(https:\/\/discord.(gg|com)\/[a-zA-Z0-9]+)$/)) {
             return res.send({ message: "Invalid Discord invite" }).status(400);
         }
 
@@ -61,17 +61,21 @@ exports.getAllClubs = async (req, res, next) => {
         let count;
         const page = req.query.page || 1;
         const pageSize = 5;
+        let search = req.query.search;
 
-        if (req.query.search) {
+
+        if (search) {
+            search = search.replace(/clubs?/ig, "");
+            console.log(search);
             count = await Club.countDocuments({
                 $text: {
-                    $search: req.query.search,
+                    $search: search,
                 },
             });
 
             clubs = await Club.find({
                 $text: {
-                    $search: req.query.search,
+                    $search: search,
                 },
             })
                 .populate("members", "-password")
